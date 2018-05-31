@@ -63,11 +63,11 @@ public class StackWalkerJdk9 {
 	 */
 	private void printStackframes1() {
 		StackWalker.getInstance() //
-				.walk(this::walkFuntion1) //
+				.walk(this::walkFunction1) //
 				.forEach(System.out::println);
 	}
 
-	private List<StackFrame> walkFuntion1(Stream<StackFrame> stackFrameStream) {
+	private List<StackFrame> walkFunction1(Stream<StackFrame> stackFrameStream) {
 		return stackFrameStream.collect(Collectors.toList());
 	}
 
@@ -78,31 +78,31 @@ public class StackWalkerJdk9 {
 	 */
 	private void printStackframes2() {
 		StackWalker.getInstance() //
-				.walk(walkFuntion2()) //
+				.walk(walkFunction2()) //
 				.forEach(System.out::println);
 	}
 
-	private Function<Stream<StackFrame>, List<StackFrame>> walkFuntion2() {
+	private Function<Stream<StackFrame>, List<StackFrame>> walkFunction2() {
 		return (stream) -> stream.collect(Collectors.toList());
 	}
 
 	private void printStackframes3() {
 		StackWalker.getInstance() //
-				.walk(walkFuntion3("ch.puzzle")) //
+				.walk(walkFunction3("ch.puzzle")) //
 				.forEach(System.out::println);
 	}
 
-	private Function<Stream<StackFrame>, List<StackFrame>> walkFuntion3(String filter) {
+	private Function<Stream<StackFrame>, List<StackFrame>> walkFunction3(String filter) {
 		return (stream) -> stream.filter(f -> f.getClassName().contains(filter)).collect(Collectors.toList());
 	}
 
 	private void printStackframes4() {
 		StackWalker.getInstance() //
-				.walk(walkFuntion4()) //
+				.walk(walkFunction4()) //
 				.forEach(System.out::println);
 	}
 
-	private Function<Stream<StackFrame>, List<String>> walkFuntion4() {
+	private Function<Stream<StackFrame>, List<String>> walkFunction4() {
 		return stream -> {
 			return stream.map(frame -> format(frame)) //
 					.skip(1) //

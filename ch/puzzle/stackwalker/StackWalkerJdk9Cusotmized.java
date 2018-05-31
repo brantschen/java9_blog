@@ -37,7 +37,7 @@ public class StackWalkerJdk9Cusotmized {
 	// capturing the reflection frames
 	private void printStackframes1() {
 		StackWalker //
-				.getInstance(StackWalker.Option.SHOW_REFLECT_FRAMES).walk(this::walkFuntion) //
+				.getInstance(StackWalker.Option.SHOW_REFLECT_FRAMES).walk(this::walkFunction) //
 				.forEach(System.out::println);
 	}
 
@@ -47,13 +47,13 @@ public class StackWalkerJdk9Cusotmized {
 		Runnable r = () -> {
 			StackWalker //
 					.getInstance(StackWalker.Option.SHOW_HIDDEN_FRAMES) //
-					.walk(this::walkFuntion) //
+					.walk(this::walkFunction) //
 					.forEach(System.out::println);
 		};
 		r.run();
 	}
 
-	private List<StackFrame> walkFuntion(Stream<StackFrame> stackFrameStream) {
+	private List<StackFrame> walkFunction(Stream<StackFrame> stackFrameStream) {
 		return stackFrameStream //
 				.collect(Collectors.toList());
 	}
